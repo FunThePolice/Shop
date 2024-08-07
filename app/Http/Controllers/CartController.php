@@ -20,10 +20,6 @@ class CartController extends Controller
         $products = session()->get('cart.products') ?? [];
         $response = $adminApiService->sendRequest('POST', 'orders', $products);
 
-//        if ($response['message']) {
-//            return redirect()->route('cart.index')->with('message', $response['message']);
-//        }
-
         session()->flush();
 
         return redirect('/')->with('order_number', $response['number']);
